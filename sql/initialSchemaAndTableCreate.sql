@@ -16,18 +16,18 @@ create table if not exists store_inventory.inventory(
   modified_on timestamp
 );
 
-create table if not exists store_inventory.location(
+create table if not exists store_inventory.warehouse(
   id bigserial primary key,
-  location_code varchar,
-  location_description varchar,
+  warehouse_code varchar,
+  warehouse_description varchar,
   created_on timestamp,
   modified_on timestamp
 );
 
-create table if not exists store_inventory.location(
+create table if not exists store_inventory.product_warehouse(
   id bigserial primary key,
   prod_id bigint references store_inventory.product(id),
-  loc_id bigint references store_inventory.location(id)
+  warehouse_id bigint references store_inventory.warehouse(id)
 );
 
 create schema if not exists store_billing_report;
