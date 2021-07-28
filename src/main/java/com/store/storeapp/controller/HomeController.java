@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @RequestMapping("")
+    @RequestMapping("/")
     public HttpEntity home(){
         JSONObject obj = new JSONObject();
         obj.put("Application","shop");
