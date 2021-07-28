@@ -9,7 +9,7 @@ phases:
   build:
     commands:
       - echo "build phase running...."
-      - mvn clean prepare-package war:explode
+      - mvnw clean prepare-package war:exploded
   post_build:
     commands:
       - echo "post build running...."
