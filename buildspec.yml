@@ -3,14 +3,14 @@ phases:
   install:
     commands:
       - echo "installing...."
-  pre-build:
+  pre_build:
     commands:
       - echo "pre-build phase running...."
   build:
     commands:
       - echo "build phase running...."
       - mvn clean prepare-package war:explode
-  post-build:
+  post_build:
     commands:
       - echo "post build running...."
       - mv target/deploy ./
