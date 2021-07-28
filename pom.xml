@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>StoreApp</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Store Application</description>
     <properties>
         <java.version>8</java.version>
         <querydsl.version>4.1.3</querydsl.version>
