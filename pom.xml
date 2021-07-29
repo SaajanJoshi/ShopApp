@@ -11,7 +11,7 @@
     <groupId>com.store</groupId>
     <artifactId>StoreApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>StoreApp</name>
     <description>Store Application</description>
     <properties>
