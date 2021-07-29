@@ -11,7 +11,7 @@ env:
 phases:
   install:
     commands:
-      - echo "installing...."
+      - echo "installing....."
       - yum update
   pre_build:
     commands:
