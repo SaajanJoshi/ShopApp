@@ -13,7 +13,7 @@ phases:
     commands:
       - echo "installing....."
       - cat /etc/system-release
-      -ifconfig
+      - ifconfig
       - psql -V
   pre_build:
     commands:
