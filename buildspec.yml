@@ -5,9 +5,8 @@ env:
     PG_HOST: database-1.cdbvnwblylki.us-east-2.rds.amazonaws.com
     PG_PORT: 5432
     PG_DBNAME: store_db
-  secrets-manager:
-    SECRET_USER: rds-db-credentials:postgres
-    SECRET_PASSWORD: rds-db-credentials:postgres
+    SECRET_USER: postgres
+    SECRET_PASSWORD: postgres
 
 phases:
   install:
