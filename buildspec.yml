@@ -19,5 +19,5 @@ phases:
       - echo "post build running...."
 artifacts:
   files:
-    - target/*.jar
+    - target/StoreApp-0.0.1-SNAPSHOT.war
   discard-paths: yes
