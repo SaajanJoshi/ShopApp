@@ -12,6 +12,8 @@ phases:
   install:
     commands:
       - echo "installing....."
+      - yum remove postgresql
+      - yum install postgresql13
       - psql -V
   pre_build:
     commands:
