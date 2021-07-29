@@ -15,7 +15,6 @@ phases:
       - cat /etc/system-release
       - yum install -y amazon-linux-extras
       - yum remove postgresql -y
-      - psql -V
       - amazon-linux-extras install postgresql13 -y
       - psql -V
   pre_build:
