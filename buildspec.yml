@@ -13,8 +13,8 @@ phases:
     commands:
       - echo "installing....."
       - yum update -y
-      - amazon-linux-extras install epel
-      - amazon-linux-extras install postgresql13
+      - amazon-linux-extras install epel -y
+      - amazon-linux-extras install postgresql13 -y
   pre_build:
     commands:
       - echo "pre-build phase running...."
