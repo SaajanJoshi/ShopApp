@@ -5,6 +5,7 @@ env:
     PG_HOST: database-1.cdbvnwblylki.us-east-2.rds.amazonaws.com
     PG_PORT: 5432
     PG_DBNAME: store_db
+  secrets-manager:
     SECRET_USER: postgres
     SECRET_PASSWORD: postgres
 
@@ -13,9 +14,6 @@ phases:
     commands:
       - echo "installing....."
       - cat /etc/system-release
-      - yum install -y amazon-linux-extras
-      - yum remove postgresql -y
-      - python2 amazon-linux-extras enable postgresql13 -y
       - psql -V
   pre_build:
     commands:
