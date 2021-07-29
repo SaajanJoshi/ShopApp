@@ -13,6 +13,7 @@ phases:
     commands:
       - echo "installing....."
       - yum update
+      - yum install postgres
   pre_build:
     commands:
       - echo "pre-build phase running...."
