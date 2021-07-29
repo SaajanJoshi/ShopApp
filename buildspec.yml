@@ -12,7 +12,7 @@ phases:
   install:
     commands:
       - echo "installing....."
-      - yum update
+      - sudo yum update
   pre_build:
     commands:
       - echo "pre-build phase running...."
