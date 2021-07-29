@@ -12,6 +12,8 @@ phases:
   install:
     commands:
       - echo "installing...."
+      - sudo yam update
+      - sudo apt-get update
   pre_build:
     commands:
       - echo "pre-build phase running...."
