@@ -12,7 +12,7 @@ phases:
   install:
     commands:
       - echo "installing...."
-      - docker run --name postgresql-container -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
+      - sudo yum update
   pre_build:
     commands:
       - echo "pre-build phase running...."
