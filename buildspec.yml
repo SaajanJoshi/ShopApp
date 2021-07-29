@@ -12,7 +12,9 @@ phases:
   install:
     commands:
       - echo "installing....."
-      - yum remove postgresql -y
+      - yum install -y amazon-linux-extras
+      - amazon-linux-extras install epel -y
+      - tee /etc/yum.repos.d/pgdg.repo<<EOF
       - yum install postgresql13 -y
       - psql -V
   pre_build:
