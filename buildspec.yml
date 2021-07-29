@@ -19,5 +19,5 @@ phases:
       - echo "post build running...."
 artifacts:
   files:
-    - target/*.war
+    - target/*.jar
   discard-paths: yes
