@@ -4,6 +4,7 @@ import com.store.storeapp.Schema;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -19,6 +20,9 @@ public class Product {
 
     @Column(name = "product_description")
     private String productDesc;
+
+    @Column(name = "product_selling_price")
+    private BigDecimal productSellingPrice;
 
     @Column(name = "created_on")
     @Temporal(TemporalType.TIMESTAMP)
@@ -62,6 +66,14 @@ public class Product {
 
     public Date getModifiedOn() {
         return modifiedOn;
+    }
+
+    public BigDecimal getProductSellingPrice() {
+        return productSellingPrice;
+    }
+
+    public void setProductSellingPrice(BigDecimal productSellingPrice) {
+        this.productSellingPrice = productSellingPrice;
     }
 
     public void setModifiedOn(Date modifiedOn) {

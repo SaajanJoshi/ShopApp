@@ -59,6 +59,7 @@ public class ProductWarehouseService {
         ProductWarehouseDto productWarehouseDto = new ProductWarehouseDto();
         productWarehouseDto.setProductCode(productDto.getProductCode());
         productWarehouseDto.setProductDescription(productDto.getProductDescription());
+        productWarehouseDto.setProductSellingPrice(productDto.getProductSellingPrice());
         productWarehouseDto.setSelfId(productDto.getSelfId());
 
         List<WarehouseDto> warehouseDtoList = new ArrayList<>();

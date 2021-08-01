@@ -36,6 +36,7 @@ public class ProductService {
         Product product = new Product();
         product.setProductCode(productDto.getProductCode());
         product.setProductDesc(productDto.getProductDescription());
+        product.setProductSellingPrice(productDto.getProductSellingPrice());
         return product;
     }
 
@@ -52,6 +53,7 @@ public class ProductService {
             productDto.setProductCode(product.getProductCode());
             productDto.setProductDescription(product.getProductDesc());
             productDto.setSelfId(product.getId());
+            productDto.setProductSellingPrice(product.getProductSellingPrice());
             productDtos.add(productDto);
         }
         return productDtos;
