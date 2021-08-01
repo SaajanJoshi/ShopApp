@@ -1,7 +1,7 @@
 package com.store.storeapp.controller;
 
 import com.store.storeapp.Api.Api;
-import com.store.storeapp.Dto.ProductDto;
+import com.store.storeapp.dto.ProductDto;
 import com.store.storeapp.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -27,8 +27,8 @@ public class ProductController {
     }
 
     @GetMapping("/allProducts")
-    public HttpEntity getAllProducts(){
-        return new ResponseEntity(productService.getAllProducts(),HttpStatus.OK);
+    public HttpEntity getAllProduct(){
+        return new ResponseEntity(productService.getAllProduct(),HttpStatus.OK);
     }
 
     @PutMapping("/deleteProduct/{prodId}")

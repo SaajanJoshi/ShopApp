@@ -46,3 +46,4 @@ create table if not exists store_billing_report.billed_product(
   billing_report_id bigint references store_billing_report.billing_report(id),
   prod_id bigint references store_inventory.product(id)
 );
+alter table store_inventory.product_warehouse add column warehouse_stock decimal;

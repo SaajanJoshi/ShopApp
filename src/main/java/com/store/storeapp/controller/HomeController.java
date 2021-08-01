@@ -1,6 +1,5 @@
 package com.store.storeapp.controller;
 
-import com.store.storeapp.Api.Api;
 import net.minidev.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(Api.HomeUrl)
+@RequestMapping()
 public class HomeController {
 
     @GetMapping

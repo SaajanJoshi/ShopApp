@@ -1,8 +1,9 @@
 package com.store.storeapp.product;
 
-import com.store.storeapp.Dto.ProductDto;
+import com.store.storeapp.dto.ProductDto;
 import com.store.storeapp.product.entity.Product;
 import com.store.storeapp.product.repository.ProductRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,16 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public Product getProductDetail(Long prodId){
+    public ProductDto getProductDetail(Long prodId){
         Optional<Product> product = productRepository.findById(prodId);
-        return product.get();
+        return copyProductEntityToDto(product);
     }
 
+    public ProductDto copyProductEntityToDto(Optional<Product> product){
+        ProductDto productDto = new ProductDto();
+        BeanUtils.copyProperties(product.get(),productDto);
+        return productDto;
+    }
     public void addProduct(ProductDto productDto) {
         Product product = mapProductDtoToEntity(productDto);
         productRepository.save(product);
@@ -33,7 +39,7 @@ public class ProductService {
         return product;
     }
 
-    public List<ProductDto> getAllProducts() {
+    public List<ProductDto> getAllProduct() {
         List<Product> productList = productRepository.findAll();
         return mapProductsToProductDto(productList);
     }
