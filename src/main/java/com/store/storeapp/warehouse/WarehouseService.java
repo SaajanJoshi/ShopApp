@@ -24,9 +24,9 @@ public class WarehouseService {
         return warehouseDTO;
     }
 
-    public void addWarehouse(WarehouseDto warehouseDTO) {
+    public Long addWarehouse(WarehouseDto warehouseDTO) {
         Warehouse warehouse = mapWarehouseDtoToEntity(warehouseDTO);
-        warehouseRepository.save(warehouse);
+        return warehouseRepository.save(warehouse).getId();
     }
 
     private Warehouse mapWarehouseDtoToEntity(WarehouseDto warehouseDTO) {
@@ -41,7 +41,7 @@ public class WarehouseService {
         return mapWarehousesToProductDto(warehouses);
     }
 
-    private List<WarehouseDto> mapWarehousesToProductDto(Collection<Warehouse> warehouses) {
+    public List<WarehouseDto> mapWarehousesToProductDto(Collection<Warehouse> warehouses) {
         List<WarehouseDto> warehouseDtos = new ArrayList<>();
 
         for(Warehouse warehouse:warehouses){

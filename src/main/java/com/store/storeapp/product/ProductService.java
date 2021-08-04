@@ -27,9 +27,9 @@ public class ProductService {
         BeanUtils.copyProperties(product.get(),productDto);
         return productDto;
     }
-    public void addProduct(ProductDto productDto) {
+    public Long addProduct(ProductDto productDto) {
         Product product = mapProductDtoToEntity(productDto);
-        productRepository.save(product);
+        return productRepository.save(product).getId();
     }
 
     private Product mapProductDtoToEntity(ProductDto productDto) {

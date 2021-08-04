@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @RestController
 @RequestMapping(Api.InventoryUrl)
 public class WarehouseController {
@@ -26,8 +29,8 @@ public class WarehouseController {
 
     @PostMapping("/addWarehouse")
     public HttpEntity addWarehouse(@RequestBody WarehouseDto warehouseDTO){
-        warehouseService.addWarehouse(warehouseDTO);
-        return new ResponseEntity("",HttpStatus.OK);
+        Long warehouseId = warehouseService.addWarehouse(warehouseDTO);
+        return new ResponseEntity(warehouseId,HttpStatus.OK);
     }
 
     @GetMapping("/allWarehouses")
@@ -47,9 +50,15 @@ public class WarehouseController {
         return new ResponseEntity("",HttpStatus.OK);
     }
 
-    @GetMapping("/getWarehouseProductDetail/{prodId}")
-    public HttpEntity getWarehouseProductDetail(@PathVariable(value = "prodId") Long prodid){
-        ProductWarehouseDto productWarehouseDto = productWarehouseService.getWarehouseProductDetail(prodid);
-        return new ResponseEntity("",HttpStatus.OK);
+    @GetMapping("/getWarehouseStockDetail/{prodId}")
+    public HttpEntity getWarehouseStockDetail(@PathVariable(value = "prodId") Long prodid){
+        List<WarehouseDto> warehouseDto = productWarehouseService.getWarehouseStockDetail(prodid);
+        return new ResponseEntity(warehouseDto,HttpStatus.OK);
+    }
+
+    @GetMapping("/getTotalStock/{prodId}")
+    public HttpEntity getTotalStock(@PathVariable(value = "prodId") Long prodid){
+        BigDecimal totalStock = productWarehouseService.getTotalStock(prodid);
+        return new ResponseEntity(totalStock,HttpStatus.OK);
     }
 }
