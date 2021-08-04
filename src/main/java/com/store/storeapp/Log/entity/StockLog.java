@@ -22,7 +22,7 @@ public class StockLog {
     @Column(name = "log_detail")
     private String logDetail;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_on")
     private Date createdOn;
 

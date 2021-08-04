@@ -4,6 +4,7 @@ import com.store.storeapp.Schema;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Table(name = "billing_report", schema = Schema.Report)
@@ -24,6 +25,10 @@ public class BillingReport {
 
     @Column(name = "discount_percentage")
     private BigDecimal discountPercentage;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_on")
+    private Date createdOn;
 
     public Long getId() {
         return id;

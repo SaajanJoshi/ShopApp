@@ -20,7 +20,7 @@ public class Warehouse {
     private String warehouseDesc;
 
     @Column(name = "created_on")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdOn;
 
     @Column(name = "modified_on")
