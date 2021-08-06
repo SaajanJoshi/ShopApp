@@ -45,7 +45,7 @@ public class WarehouseController {
     }
 
     @PostMapping("/addStockToWarehouse")
-    public HttpEntity addStockToWarehouse(ProductWarehouseDto productWarehouseDto){
+    public HttpEntity addStockToWarehouse(@RequestBody ProductWarehouseDto productWarehouseDto){
         productWarehouseService.addStockToWareHouse(productWarehouseDto);
         return new ResponseEntity("",HttpStatus.OK);
     }

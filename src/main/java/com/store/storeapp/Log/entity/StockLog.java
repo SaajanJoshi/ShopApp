@@ -1,6 +1,7 @@
 package com.store.storeapp.Log.entity;
 
 import com.store.storeapp.Schema;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,6 +25,7 @@ public class StockLog {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_on")
+    @CreationTimestamp
     private Date createdOn;
 
     public Long getId() {

@@ -1,6 +1,7 @@
 package com.store.storeapp.inventory.entity;
 
 import com.store.storeapp.Schema;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ public class Inventory {
 
     @Column(name = "created_on")
     @Temporal(TemporalType.DATE)
+    @CreationTimestamp
     private Date createdon;
 
     @Column(name = "modified_on")

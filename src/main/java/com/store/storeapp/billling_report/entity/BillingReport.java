@@ -1,6 +1,7 @@
 package com.store.storeapp.billling_report.entity;
 
 import com.store.storeapp.Schema;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -28,6 +29,7 @@ public class BillingReport {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_on")
+    @CreationTimestamp
     private Date createdOn;
 
     public Long getId() {
