@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,17 +40,20 @@ public class ProductWarehouseService {
         List<ProductWarehouse> productWarehouseList = new ArrayList<>();
         for(WarehouseDto warehouseDto:productWarehouseDto.getWarehouseDtoList()){
             Boolean isAvailable = false;
-
+            Long productWarehouseId = null;
             for(ProductWarehouse productWarehouse:productWarehouses){
                 if(prodId.equals(productWarehouse.getProdId())&&warehouseDto.getSelfId().equals(productWarehouse.getWarehouseId())){
                     isAvailable = true;
-                    productWarehouse.setId(productWarehouse.getId());
+                    productWarehouseId = productWarehouse.getId();
+                    break;
                 }
             }
 
             createStockLog(prodId,warehouseDto.getSelfId(),warehouseDto.getWarehouseStock(),isAvailable);
 
             ProductWarehouse productWarehouse = new ProductWarehouse();
+            if(productWarehouseId!=null)
+                productWarehouse.setId(productWarehouseId);
             productWarehouse.setWarehouseId(warehouseDto.getSelfId());
             productWarehouse.setProdId(prodId);
             productWarehouse.setWarehouseStock(warehouseDto.getWarehouseStock());
@@ -128,5 +128,23 @@ public class ProductWarehouseService {
             totalStock.add(productWarehouse.getWarehouseStock());
         }
         return totalStock;
+    }
+
+    public Map<Long, BigDecimal> getProductTotalStock(Collection<Long> prodIds) {
+        List<ProductWarehouse> productWarehouseList = productWarehouseRepository.findAllByProdIds(prodIds);
+        logger.info("size of productWarehouse : {}",productWarehouseList.size());
+        Map<Long,BigDecimal> prodToStockMap = new HashMap<>();
+        for(Long prodId:prodIds){
+            BigDecimal total = BigDecimal.ZERO;
+          for(ProductWarehouse productWarehouse:productWarehouseList){
+              if(productWarehouse.getProdId().equals(prodId)){
+                  total = total.add(productWarehouse.getWarehouseStock());
+              }
+          }
+            prodToStockMap.put(prodId,total);
+        }
+
+        logger.info("map prodToStock: {}",prodToStockMap);
+        return prodToStockMap;
     }
 }

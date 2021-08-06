@@ -16,6 +16,7 @@ public class ProductDto {
     private String productCode;
     private String productDescription;
     private BigDecimal productSellingPrice;
+    private BigDecimal totalStock;
 
     public Long getSelfId() {
         return selfId;
@@ -47,5 +48,13 @@ public class ProductDto {
 
     public void setProductSellingPrice(BigDecimal productSellingPrice) {
         this.productSellingPrice = productSellingPrice;
+    }
+
+    public BigDecimal getTotalStock() {
+        return totalStock;
+    }
+
+    public void setTotalStock(BigDecimal totalStock) {
+        this.totalStock = totalStock;
     }
 }
