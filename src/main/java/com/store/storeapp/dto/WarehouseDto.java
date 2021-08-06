@@ -19,4 +19,16 @@ public class WarehouseDto {
     private BigDecimal warehouseStock;
     private Date createdOn;
     private Date modifiedOn;
+
+    @Override
+    public String toString() {
+        return "WarehouseDto{" +
+                "selfId=" + selfId +
+                ", warehouseCode='" + warehouseCode + '\'' +
+                ", warehouseDesc='" + warehouseDesc + '\'' +
+                ", warehouseStock=" + warehouseStock +
+                ", createdOn=" + createdOn +
+                ", modifiedOn=" + modifiedOn +
+                '}';
+    }
 }

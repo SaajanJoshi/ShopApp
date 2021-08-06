@@ -13,4 +13,12 @@ import java.util.List;
 @Setter
 public class ProductWarehouseDto extends ProductDto{
     List<WarehouseDto> warehouseDtoList;
+
+    public List<WarehouseDto> getWarehouseDtoList() {
+        return warehouseDtoList;
+    }
+
+    public void setWarehouseDtoList(List<WarehouseDto> warehouseDtoList) {
+        this.warehouseDtoList = warehouseDtoList;
+    }
 }
