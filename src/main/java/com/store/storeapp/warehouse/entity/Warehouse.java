@@ -65,4 +65,15 @@ public class Warehouse {
     public void setModifiedOn(Date modifiedOn) {
         this.modifiedOn = modifiedOn;
     }
+
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "Id=" + Id +
+                ", warehouseCode='" + warehouseCode + '\'' +
+                ", warehouseDesc='" + warehouseDesc + '\'' +
+                ", createdOn=" + createdOn +
+                ", modifiedOn=" + modifiedOn +
+                '}';
+    }
 }

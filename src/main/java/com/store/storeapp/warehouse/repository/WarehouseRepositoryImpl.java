@@ -1,6 +1,5 @@
 package com.store.storeapp.warehouse.repository;
 
-import com.querydsl.jpa.impl.JPAQuery;
 import com.store.storeapp.QueryBuild;
 import com.store.storeapp.warehouse.entity.QWarehouse;
 import com.store.storeapp.warehouse.entity.Warehouse;
@@ -14,14 +13,10 @@ public class WarehouseRepositoryImpl extends QueryBuild implements WarehouseRepo
 
     @Override
     public List<Warehouse> getAllWarehouseByIds(Collection<Long> warehouseIds) {
-        JPAQuery getAllWarehouseById = createQuery();
-
-        /**create query*/
-       getAllWarehouseById
+        return createQuery()
                 .select(qWarehouse)
-                .where(qWarehouse.Id.in(warehouseIds));
-
-       /**fetch record */
-      return getAllWarehouseById.fetch();
+                .from(qWarehouse)
+                .where(qWarehouse.Id.in(warehouseIds))
+                .fetch();
     }
 }

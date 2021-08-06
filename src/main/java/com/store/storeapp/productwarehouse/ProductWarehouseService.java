@@ -9,6 +9,8 @@ import com.store.storeapp.productwarehouse.entity.ProductWarehouse;
 import com.store.storeapp.productwarehouse.repository.ProductWarehouseRepository;
 import com.store.storeapp.warehouse.WarehouseService;
 import com.store.storeapp.warehouse.entity.Warehouse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,8 @@ public class ProductWarehouseService {
     WarehouseService warehouseService;
     @Autowired
     StockLogService stockLogService;
+
+    private Logger logger = LoggerFactory.getLogger(ProductWarehouseService.class);
     public void addStockToWareHouse(ProductWarehouseDto productWarehouseDto) {
         Long prodId = productWarehouseDto.getSelfId();
         if (prodId == null)
@@ -69,8 +73,30 @@ public class ProductWarehouseService {
                 .map(ProductWarehouse::getWarehouseId)
                 .collect(Collectors.toSet());
 
-        List<Warehouse> warehouses = warehouseService.getAllWarehouseByIds(warehouseIds);
-        return warehouseService.mapWarehousesToProductDto(warehouses);
+        Map<Long, BigDecimal> warehouseStockMap = productWarehouseList
+                .stream()
+                .collect(Collectors.toMap(ProductWarehouse::getWarehouseId,ProductWarehouse::getWarehouseStock));
+
+        if(!warehouseIds.isEmpty()){
+            List<Warehouse> warehouses = warehouseService.getAllWarehouseByIds(warehouseIds);
+            return populateWarehouseDto(warehouses,warehouseStockMap);
+        }
+        return null;
+    }
+
+    private List<WarehouseDto> populateWarehouseDto(List<Warehouse> warehouses,Map<Long, BigDecimal> warehouseStockMap) {
+        List<WarehouseDto> warehouseDtoList = new ArrayList<>();
+        for (Warehouse warehouse:warehouses){
+            WarehouseDto warehouseDto = new WarehouseDto();
+            warehouseDto.setWarehouseDesc(warehouse.getWarehouseDesc());
+            warehouseDto.setWarehouseStock(warehouseStockMap.get(warehouse.getId()));
+            warehouseDto.setWarehouseCode(warehouse.getWarehouseCode());
+            warehouseDto.setSelfId(warehouse.getId());
+            warehouseDtoList.add(warehouseDto);
+        }
+
+        logger.info("warehouseDtoList : {}", warehouseDtoList);
+        return warehouseDtoList;
     }
 
     private ProductWarehouseDto populateProductWarehouseDto(ProductDto productDto, List<Warehouse> warehouses,Map<Long, BigDecimal> warehouseStockMap) {
@@ -97,6 +123,7 @@ public class ProductWarehouseService {
     public BigDecimal getTotalStock(Long prodid) {
         List<ProductWarehouse> productWarehouseList = productWarehouseRepository.findAllByProdId(prodid);
         BigDecimal totalStock = BigDecimal.ZERO;
+
         for (ProductWarehouse productWarehouse : productWarehouseList) {
             totalStock.add(productWarehouse.getWarehouseStock());
         }
