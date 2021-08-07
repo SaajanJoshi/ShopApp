@@ -56,8 +56,6 @@ public class WarehouseController {
     @GetMapping("/getWarehouseStockDetail/{prodId}")
     public HttpEntity getWarehouseStockDetail(@PathVariable(value = "prodId") Long prodid){
         List<WarehouseDto> warehouseDto = productWarehouseService.getWarehouseStockDetail(prodid);
-        logger.info("warehouseIds response : {}",warehouseDto);
-
         return new ResponseEntity(warehouseDto,HttpStatus.OK);
     }
 

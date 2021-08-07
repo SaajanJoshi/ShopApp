@@ -1,6 +1,7 @@
 package com.store.storeapp.warehouse.entity;
 
 import com.store.storeapp.Schema;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class Warehouse {
 
     @Column(name = "created_on")
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdOn;
 
     @Column(name = "modified_on")

@@ -29,9 +29,6 @@ create table if not exists store_inventory.product_warehouse(
   id bigserial primary key,
   prod_id bigint,
   warehouse_id bigint,
-  warehouse_stock decimal,
-  created_on timestamp,
-  modified_on timestamp
 );
 
 create schema if not exists store_billing_report;
@@ -60,3 +57,12 @@ create table store_inventory.stock_log(
 );
 
 alter table store_inventory.product add column product_selling_price decimal;
+alter table store_inventory.product_warehouse add column warehouse_stock decimal;
+alter table store_inventory.product_warehouse add column created_on timestamp;
+alter table store_inventory.product_warehouse add column modified_on timestamp;
+alter table store_billing_report.billed_product add column created_on timestamp;
+alter table store_billing_report.billed_product add column modified_on timestamp;
+alter table store_billing_report.billing_report add column modified_on timestamp;
+
+alter table store_inventory.warehouse add constraint warehouse_code_constraint unique (warehouse_code);
+alter table store_inventory.product add constraint product_code_constraint unique (product_code);

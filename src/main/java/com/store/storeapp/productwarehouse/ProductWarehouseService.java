@@ -36,9 +36,19 @@ public class ProductWarehouseService {
           prodId =  productService.addProduct(productWarehouseDto);
 
         List<ProductWarehouse> productWarehouses = productWarehouseRepository.findAllByProdId(prodId);
+        List<WarehouseDto> warehouseDtoList = productWarehouseDto.getWarehouseDtoList();
+        /**list of new warehouse*/
+        List<WarehouseDto> warehouseDtoToCreate = warehouseDtoList
+                .stream()
+                .filter(w->w.getSelfId()==null || w.getSelfId()==0)
+                .collect(Collectors.toList());
+        if (warehouseDtoToCreate!=null || !warehouseDtoToCreate.isEmpty()){
+            List<Warehouse> warehouses = warehouseService.addAllWarehouse(warehouseDtoToCreate);
+            manipulateWarehouseDtoWithCreatedWarehouse(warehouseDtoList,warehouses);
+        }
 
         List<ProductWarehouse> productWarehouseList = new ArrayList<>();
-        for(WarehouseDto warehouseDto:productWarehouseDto.getWarehouseDtoList()){
+        for(WarehouseDto warehouseDto:warehouseDtoList){
             Boolean isAvailable = false;
             Long productWarehouseId = null;
             for(ProductWarehouse productWarehouse:productWarehouses){
@@ -60,6 +70,18 @@ public class ProductWarehouseService {
             productWarehouseList.add(productWarehouse);
         }
         productWarehouseRepository.saveAll(productWarehouseList);
+    }
+
+    private void manipulateWarehouseDtoWithCreatedWarehouse(List<WarehouseDto> warehouseDtoList, List<Warehouse> warehouses) {
+        for(WarehouseDto warehouseDto:warehouseDtoList){
+            if(warehouseDto.getSelfId()==null || warehouseDto.getSelfId()==0){
+                for(Warehouse warehouse:warehouses){
+                    if(warehouse.getWarehouseCode().equals(warehouseDto.getWarehouseCode())){
+                        warehouseDto.setSelfId(warehouse.getId());
+                    }
+                }
+            }
+        }
     }
 
     private void createStockLog(Long prodId, Long warehouseId, BigDecimal warehouseStock, Boolean isAvailable) {

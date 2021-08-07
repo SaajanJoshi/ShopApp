@@ -62,4 +62,17 @@ public class WarehouseService {
     public List<Warehouse> getAllWarehouseByIds(Collection<Long> warehouseIds) {
        return warehouseRepository.getAllWarehouseByIds(warehouseIds);
     }
+
+    public List<Warehouse> addAllWarehouse(Collection<WarehouseDto> warehouseDtoList) {
+    List<Warehouse> warehouses = mapWarehouseDtoToWarehouse(warehouseDtoList);
+    return warehouseRepository.saveAll(warehouses);
+    }
+
+    private List<Warehouse> mapWarehouseDtoToWarehouse(Collection<WarehouseDto> warehouseDtoList){
+        List<Warehouse> warehouses = new ArrayList<>();
+        for(WarehouseDto warehouseDto:warehouseDtoList){
+            warehouses.add(mapWarehouseDtoToEntity(warehouseDto));
+        }
+        return warehouses;
+    }
 }
