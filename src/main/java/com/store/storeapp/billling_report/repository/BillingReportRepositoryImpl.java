@@ -5,7 +5,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.store.storeapp.QueryBuild;
 import com.store.storeapp.billling_report.entity.BillingReport;
 import com.store.storeapp.billling_report.entity.QBillingReport;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.Date;
 import java.util.List;
