@@ -32,6 +32,9 @@ public class Product {
     @Column(name = "modified_on")
     private Date modifiedOn;
 
+    @Column(name = "product_unit")
+    private String productUnit;
+
     public Long getId() {
         return id;
     }
@@ -78,5 +81,13 @@ public class Product {
 
     public void setModifiedOn(Date modifiedOn) {
         this.modifiedOn = modifiedOn;
+    }
+
+    public String getProductUnit() {
+        return productUnit;
+    }
+
+    public void setProductUnit(String productUnit) {
+        this.productUnit = productUnit;
     }
 }

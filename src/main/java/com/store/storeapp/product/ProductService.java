@@ -74,4 +74,8 @@ public class ProductService {
         Optional<Product> product = productRepository.findById(prodId);
         productRepository.delete(product.get());
     }
+
+    public List<Product> getAllWithProdids(Collection<Long> prodIds){
+        return productRepository.getAllWithProdids(prodIds);
+    }
 }
