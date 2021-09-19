@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ProductRepositoryCustom {
     List<Product> getAllWithProdids(Collection<Long> prodIds);
+    List<Product> getAllByProductCode(Collection<String> prodCode);
+    Product findByProductCode(String productCode);
 }

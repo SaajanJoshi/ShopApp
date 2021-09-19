@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface WarehouseRepositoryCustom {
     List<Warehouse> getAllWarehouseByIds(Collection<Long> warehouseIds);
+    List<Warehouse> findAllByWarehouseCode(Collection<String> warehouseCode);
+    Warehouse findByWarehouseCode(String warehouseCode);
 }

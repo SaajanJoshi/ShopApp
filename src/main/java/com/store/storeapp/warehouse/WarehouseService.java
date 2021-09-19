@@ -41,6 +41,10 @@ public class WarehouseService {
         return mapWarehousesToProductDto(warehouses);
     }
 
+    public Warehouse getWarehouseByCode(String warehouseCode){
+        return warehouseRepository.findByWarehouseCode(warehouseCode);
+    }
+
     public List<WarehouseDto> mapWarehousesToProductDto(Collection<Warehouse> warehouses) {
         List<WarehouseDto> warehouseDtos = new ArrayList<>();
 
@@ -63,6 +67,9 @@ public class WarehouseService {
        return warehouseRepository.getAllWarehouseByIds(warehouseIds);
     }
 
+    public List<Warehouse> getAllWarehouseByCode(Collection<String> warehouseCodes){
+        return warehouseRepository.findAllByWarehouseCode(warehouseCodes);
+    }
     public List<Warehouse> addAllWarehouse(Collection<WarehouseDto> warehouseDtoList) {
     List<Warehouse> warehouses = mapWarehouseDtoToWarehouse(warehouseDtoList);
     return warehouseRepository.saveAll(warehouses);
